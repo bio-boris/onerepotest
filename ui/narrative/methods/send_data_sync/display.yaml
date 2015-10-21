@@ -1,0 +1,59 @@
+#
+# Define basic display information
+#
+name     : Async Docker Test (sync)
+
+tooltip  : |
+    Perform Async Docker Test.
+
+screenshots :
+    []
+
+#
+# Define the set of other narrative methods that should be suggested to the user.
+#
+suggestions :
+    apps:
+        related :
+            []
+        next :
+            []
+    methods:
+        related :
+            []
+        next :
+            []
+
+
+#
+# Configure the display and description of the parameters
+#
+parameters :
+    param0 :
+        ui-name : |
+            Genome1 ID
+        short-hint : |
+            Source genome 1
+        long-hint  : |
+            Source genome 1
+
+
+    param1 :
+        ui-name : |
+            Genome2 ID
+        short-hint : |
+            Source genome 2
+        long-hint  : |
+            Source genome 2
+
+
+
+description : |
+    Async Docker Test (sync)
+
+
+
+technical-description : ""
+
+publications :
+    []

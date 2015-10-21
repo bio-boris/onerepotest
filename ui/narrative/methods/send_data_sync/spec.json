@@ -1,0 +1,55 @@
+{
+  "ver" : "1.0.0",
+  "authors" : [ ],
+  "contact" : "help@kbase.us",
+  "visble" : true,
+  "categories" : ["active"],
+  "widgets" : {
+    "input" : null,
+    "output" : "null"
+  },
+  "parameters" : [ {
+    "id" : "param0",
+    "optional" : false,
+    "advanced" : false,
+    "allow_multiple" : false,
+    "default_values" : [ "" ],
+    "field_type" : "text",
+    "text_options" : {
+      "valid_ws_types" : [ "KBaseGenomes.Genome" ]
+    }
+  }, {
+    "id" : "param1",
+    "optional" : false,
+    "advanced" : false,
+    "allow_multiple" : false,
+    "default_values" : [ "" ],
+    "field_type" : "text",
+    "text_options" : {
+      "valid_ws_types" : [ "KBaseGenomes.Genome" ]
+    }
+  } ],
+  "behavior" : {
+    "service-mapping" : {
+      "url" : "${endpoint}/onerepotest",
+      "name" : "onerepotest",
+      "method" : "send_data",
+      "input_mapping" : [
+        {
+          "input_parameter": "param0",
+          "target_property": "genomeA"
+        },
+        {
+          "input_parameter": "param1",
+          "target_property": "genomeB"
+        }
+      ],
+      "output_mapping" : [
+        {
+          "service_method_output_path": [],
+          "target_property": "output"
+        }
+      ]
+    }
+  }
+}
