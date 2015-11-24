@@ -1,4 +1,9 @@
 script_dir=$(dirname "$(readlink -f "$0")")
 export KB_DEPLOYMENT_CONFIG=$script_dir/../deploy.cfg
-WORK_DIR=/kb/module/work
-cat $WORK_DIR/token | xargs sh /kb/deployment/bin/run_onerepotest_async_job.sh $WORK_DIR/input.json $WORK_DIR/output.json
+WD=/kb/module/work
+if [ -f $WD/token ]; then
+    cat $WD/token | xargs sh $script_dir/../bin/run_onerepotest_async_job.sh $WD/input.json $WD/output.json
+else
+    echo "File $WD/token doesn't exist, aborting."
+    exit 1
+fi

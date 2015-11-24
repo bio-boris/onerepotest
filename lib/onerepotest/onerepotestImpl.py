@@ -2,13 +2,13 @@
 #END_HEADER
 
 
-class Onerepotest:
+class onerepotest:
     '''
     Module Name:
-    Onerepotest
+    onerepotest
 
     Module Description:
-    
+    A KBase module: onerepotest
     '''
 
     ######## WARNING FOR GEVENT USERS #######
@@ -37,7 +37,7 @@ class Onerepotest:
 
         # At some point might do deeper type checking...
         if not isinstance(returnVal, object):
-            raise ValueError('Method compare_genome_features return value ' +
+            raise ValueError('Method send_data return value ' +
                              'returnVal is not type object as required.')
         # return the results
         return [returnVal]

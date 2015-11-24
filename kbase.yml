@@ -1,14 +1,15 @@
 module-name:
     onerepotest
 
-module-version:
-    0.0.1
-
 module-description:
     KBase module for integration tests of docker-based service/async method calls
 
 service-language:
     python
 
+module-version:
+    0.0.1
+
 owners:
     [rsutormin, wstester1]
+
