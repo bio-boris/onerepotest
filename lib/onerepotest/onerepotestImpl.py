@@ -1,4 +1,5 @@
 #BEGIN_HEADER
+import time
 #END_HEADER
 
 
@@ -41,3 +42,21 @@ class onerepotest:
                              'returnVal is not type object as required.')
         # return the results
         return [returnVal]
+
+    def print_lines(self, ctx, text):
+        # ctx is the context object
+        # return variables are: number_of_lines
+        #BEGIN print_lines
+        number_of_lines = 0
+        for line in text.split("\n"):
+            print(line.rstrip() + "\n")
+            number_of_lines += 1
+            time.sleep(5)
+        #END print_lines
+
+        # At some point might do deeper type checking...
+        if not isinstance(number_of_lines, int):
+            raise ValueError('Method print_lines return value ' +
+                             'number_of_lines is not type int as required.')
+        # return the results
+        return [number_of_lines]

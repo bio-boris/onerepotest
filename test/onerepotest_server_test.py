@@ -55,9 +55,11 @@ class onerepotestTest(unittest.TestCase):
     def getContext(self):
         return self.__class__.ctx
 
-    def test_your_method(self):
+    def test_send_data(self):
         ret = self.getImpl().send_data(self.getContext(), {"genomeA": "myws.mygenome1", "genomeB": "myws.mygenome2"})
         self.assertEqual(len(ret[0]['params'].items()), 2)
         self.assertEqual(ret[0]['params']["genomeA"], "myws.mygenome1")
-        pass
-        
+
+    def test_print_lines(self):
+        ret = self.getImpl().print_lines(self.getContext(), "l1\nl2\nl3")
+        self.assertEqual(ret[0], 3)
