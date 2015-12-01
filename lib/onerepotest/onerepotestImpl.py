@@ -49,7 +49,7 @@ class onerepotest:
         #BEGIN print_lines
         number_of_lines = 0
         for line in text.split("\n"):
-            print(line.rstrip() + "\n")
+            print("[" + line.rstrip() + "]")
             number_of_lines += 1
             time.sleep(5)
         #END print_lines
