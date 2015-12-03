@@ -63,3 +63,14 @@ class onerepotestTest(unittest.TestCase):
     def test_print_lines(self):
         ret = self.getImpl().print_lines(self.getContext(), "l1\nl2\nl3")
         self.assertEqual(ret[0], 3)
+
+    def test_generate_error(self):
+        with self.assertRaises(ValueError) as context:
+            self.getImpl().generate_error(self.getContext(), "Super!")
+        self.assertTrue("Super!" in context.exception)
+
+    def test_get_deploy_config(self):
+        ret = self.getImpl().get_deploy_config(self.getContext())
+        self.assertTrue(type(ret[0]) is dict)
+        self.assertTrue(ret[0]["kbase-endpoint"].startswith("http"))
+

@@ -25,6 +25,7 @@ class onerepotest:
     # be found
     def __init__(self, config):
         #BEGIN_CONSTRUCTOR
+        self.deploy_config = config
         #END_CONSTRUCTOR
         pass
 
@@ -60,3 +61,25 @@ class onerepotest:
                              'number_of_lines is not type int as required.')
         # return the results
         return [number_of_lines]
+
+    def generate_error(self, ctx, error):
+        # ctx is the context object
+        #BEGIN generate_error
+        print("Preparing to generate an error...")
+        raise ValueError(error)
+        #END generate_error
+        pass
+
+    def get_deploy_config(self, ctx):
+        # ctx is the context object
+        # return variables are: config
+        #BEGIN get_deploy_config
+        config = self.deploy_config
+        #END get_deploy_config
+
+        # At some point might do deeper type checking...
+        if not isinstance(config, dict):
+            raise ValueError('Method get_deploy_config return value ' +
+                             'config is not type dict as required.')
+        # return the results
+        return [config]
