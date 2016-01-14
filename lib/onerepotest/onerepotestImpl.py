@@ -1,5 +1,6 @@
 #BEGIN_HEADER
 import time
+import os
 #END_HEADER
 
 
@@ -83,3 +84,17 @@ class onerepotest:
                              'config is not type dict as required.')
         # return the results
         return [config]
+
+    def list_ref_data(self, ctx, ref_data_path):
+        # ctx is the context object
+        # return variables are: files
+        #BEGIN list_ref_data
+        files = os.listdir(ref_data_path)
+        #END list_ref_data
+
+        # At some point might do deeper type checking...
+        if not isinstance(files, list):
+            raise ValueError('Method list_ref_data return value ' +
+                             'files is not type list as required.')
+        # return the results
+        return [files]

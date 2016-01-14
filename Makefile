@@ -61,4 +61,6 @@ test:
 
 clean:
 	rm -rfv $(LBIN_DIR)
-	
+
+ref-data:
+	cp -a ./data/. /data/

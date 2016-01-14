@@ -11,4 +11,6 @@ module onerepotest {
     funcdef generate_error(string error) returns () authentication required;
 
     funcdef get_deploy_config() returns (mapping<string, string> config) authentication required;
+
+    funcdef list_ref_data(string ref_data_path) returns (list<string> files) authentication required;
 };
