@@ -12,14 +12,12 @@ elif [ "${1}" = "test" ] ; then
 elif [ "${1}" = "async" ] ; then
   sh ./scripts/run_async.sh
 elif [ "${1}" = "init" ] ; then
-  echo "Initialize module"
+  make ref-data
 elif [ "${1}" = "bash" ] ; then
   bash
 elif [ "${1}" = "report" ] ; then
   export KB_SDK_COMPILE_REPORT_FILE=./work/compile_report.json
   make compile
-elif [ "${1}" = "init" ] ; then
-  make ref-data
 else
   echo Unknown
 fi
