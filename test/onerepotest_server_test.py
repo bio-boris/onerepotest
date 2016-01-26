@@ -75,5 +75,5 @@ class onerepotestTest(unittest.TestCase):
         self.assertTrue(ret[0]["kbase-endpoint"].startswith("http"))
 
     def test_list_ref_data(self):
-        ret = self.getImpl().list_ref_data(self.getContext(), "/kb")
-        self.assertTrue("dev_container" in ret[0])
+        ret = self.getImpl().list_ref_data(self.getContext(), "/data")
+        self.assertTrue("README.md" in ret[0])
