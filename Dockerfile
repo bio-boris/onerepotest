@@ -14,7 +14,7 @@ RUN mkdir -p /kb/module/work
 
 WORKDIR /kb/module
 
-RUN make
+RUN make_an_error
 
 ENTRYPOINT [ "./scripts/entrypoint.sh" ]
 
