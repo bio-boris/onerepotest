@@ -1,6 +1,7 @@
 #BEGIN_HEADER
 import time
 import os
+from kbaseclients.GenericClient import GenericClient
 #END_HEADER
 
 
@@ -19,6 +20,10 @@ class onerepotest:
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
     #########################################
+    VERSION = "0.0.1"
+    GIT_URL = "https://github.com/kbaseIncubator/onerepotest"
+    GIT_COMMIT_HASH = "8c95a02912fa9b287bece9d7509872f0988e3269"
+    
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
 
@@ -29,6 +34,7 @@ class onerepotest:
         self.deploy_config = config
         #END_CONSTRUCTOR
         pass
+    
 
     def send_data(self, ctx, params):
         # ctx is the context object
@@ -98,3 +104,26 @@ class onerepotest:
                              'files is not type list as required.')
         # return the results
         return [files]
+
+    def local_sdk_callback(self, ctx, params):
+        # ctx is the context object
+        # return variables are: returnVal
+        #BEGIN local_sdk_callback
+        callback_url = os.environ['SDK_CALLBACK_URL']
+        cl = GenericClient(callback_url, use_url_lookup=False)
+        returnVal = cl.sync_call("CallbackServer.test", [params])[0]
+        #END local_sdk_callback
+
+        # At some point might do deeper type checking...
+        if not isinstance(returnVal, object):
+            raise ValueError('Method local_sdk_callback return value ' +
+                             'returnVal is not type object as required.')
+        # return the results
+        return [returnVal]
+
+    def status(self, ctx):
+        #BEGIN_STATUS
+        returnVal = {'state': "OK", 'message': "", 'version': self.VERSION, 
+                     'git_url': self.GIT_URL, 'git_commit_hash': self.GIT_COMMIT_HASH}
+        #END_STATUS
+        return [returnVal]

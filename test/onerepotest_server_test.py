@@ -77,3 +77,7 @@ class onerepotestTest(unittest.TestCase):
     def test_list_ref_data(self):
         ret = self.getImpl().list_ref_data(self.getContext(), "/data")
         self.assertTrue("README.md" in ret[0])
+
+    def test_local_sdk_callback(self):
+        ret = self.getImpl().local_sdk_callback(self.getContext(), {"key1": "val1"})
+        print(json.dumps(ret))

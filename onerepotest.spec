@@ -13,4 +13,6 @@ module onerepotest {
     funcdef get_deploy_config() returns (mapping<string, string> config) authentication required;
 
     funcdef list_ref_data(string ref_data_path) returns (list<string> files) authentication required;
+
+    funcdef local_sdk_callback(UnspecifiedObject params) returns (UnspecifiedObject) authentication required;
 };
