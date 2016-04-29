@@ -111,7 +111,8 @@ class onerepotest:
         #BEGIN local_sdk_callback
         callback_url = os.environ['SDK_CALLBACK_URL']
         cl = GenericClient(callback_url, use_url_lookup=False)
-        returnVal = cl.sync_call("CallbackServer.test", [params])[0]
+        returnVal = cl.sync_call("kb_read_library_to_file.convert_read_library_to_file", [params],
+                                 json_rpc_context = {"service_ver": "dev"})[0]
         #END local_sdk_callback
 
         # At some point might do deeper type checking...
