@@ -1,6 +1,8 @@
 #BEGIN_HEADER
 import time
 import os
+import shutil
+import json
 from kbaseclients.GenericClient import GenericClient
 #END_HEADER
 
@@ -22,7 +24,7 @@ class onerepotest:
     #########################################
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbaseIncubator/onerepotest"
-    GIT_COMMIT_HASH = "8c95a02912fa9b287bece9d7509872f0988e3269"
+    GIT_COMMIT_HASH = "0888ef46787df9e8d0335be4265c29d65e38c1cb"
     
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
@@ -105,22 +107,50 @@ class onerepotest:
         # return the results
         return [files]
 
-    def local_sdk_callback(self, ctx, params):
+    def local_sdk_callback(self, ctx, input):
         # ctx is the context object
-        # return variables are: returnVal
+        # return variables are: output, state
         #BEGIN local_sdk_callback
+        dir_path = "/kb/module/work/tmp/"
+        input_fn = "input.txt"
+        f = open(dir_path + input_fn, 'w')
+        f.write(input)
+        f.close()
+        output_fn = "output.txt"
         callback_url = os.environ['SDK_CALLBACK_URL']
         cl = GenericClient(callback_url, use_url_lookup=False)
-        returnVal = cl.sync_call("kb_read_library_to_file.convert_read_library_to_file", [params],
-                                 json_rpc_context = {"service_ver": "dev"})[0]
+        state = cl.sync_call("onerepotest.copy_scratch_file", [input_fn, output_fn],
+                             json_rpc_context = {"service_ver": "dev"})[0]
+        f = open(dir_path + output_fn, 'r')
+        output = f.read()
+        f.close()
         #END local_sdk_callback
 
         # At some point might do deeper type checking...
-        if not isinstance(returnVal, object):
+        if not isinstance(output, basestring):
             raise ValueError('Method local_sdk_callback return value ' +
-                             'returnVal is not type object as required.')
+                             'output is not type basestring as required.')
+        if not isinstance(state, basestring):
+            raise ValueError('Method local_sdk_callback return value ' +
+                             'state is not type basestring as required.')
         # return the results
-        return [returnVal]
+        return [output, state]
+
+    def copy_scratch_file(self, ctx, input_file_name, output_file_name):
+        # ctx is the context object
+        # return variables are: state
+        #BEGIN copy_scratch_file
+        dir_path = "/kb/module/work/tmp/"
+        shutil.copy(dir_path + input_file_name, dir_path + output_file_name)
+        state = "OK"
+        #END copy_scratch_file
+
+        # At some point might do deeper type checking...
+        if not isinstance(state, basestring):
+            raise ValueError('Method copy_scratch_file return value ' +
+                             'state is not type basestring as required.')
+        # return the results
+        return [state]
 
     def status(self, ctx):
         #BEGIN_STATUS

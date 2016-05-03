@@ -14,5 +14,7 @@ module onerepotest {
 
     funcdef list_ref_data(string ref_data_path) returns (list<string> files) authentication required;
 
-    funcdef local_sdk_callback(UnspecifiedObject params) returns (UnspecifiedObject) authentication required;
+    funcdef local_sdk_callback(string input) returns (string output, string state) authentication required;
+
+    funcdef copy_scratch_file(string input_file_name, string output_file_name) returns (string state) authentication required;
 };

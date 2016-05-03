@@ -79,5 +79,22 @@ class onerepotestTest(unittest.TestCase):
         self.assertTrue("README.md" in ret[0])
 
     def test_local_sdk_callback(self):
-        ret = self.getImpl().local_sdk_callback(self.getContext(), {"key1": "val1"})
-        print(json.dumps(ret))
+        input_text = "key1 and val1"
+        ret = self.getImpl().local_sdk_callback(self.getContext(), input_text)
+        self.assertEqual(ret[0], input_text)
+        self.assertTrue("k" in ret[1].lower())
+
+    def test_copy_scratch_file(self):
+        input_fn = "input.txt"
+        output_fn = "output.txt"
+        dir = "/kb/module/work/tmp/"
+        input_text = "123\n456"
+        f = open(dir + input_fn, "w")
+        f.write(input_text)
+        f.close()
+        ret = self.getImpl().copy_scratch_file(self.getContext(), input_fn, output_fn)[0]
+        self.assertEqual(ret, "OK")
+        f = open(dir + output_fn, "r")
+        output_text = f.read()
+        f.close()
+        self.assertEqual(output_text, input_text)
