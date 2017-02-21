@@ -25,7 +25,7 @@ class onerepotest:
     ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbaseIncubator/onerepotest"
-    GIT_COMMIT_HASH = "2df279b5668a34763993d65dc53f129fde1a4043"
+    GIT_COMMIT_HASH = "b1351514c6f3ebb2c92377b2d01976eb6c52b5c3"
 
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER

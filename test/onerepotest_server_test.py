@@ -7,7 +7,7 @@ from os import environ
 from ConfigParser import ConfigParser
 from pprint import pprint
 
-import biokbase.nexus
+from onerepotest.authclient import KBaseAuth as _KBaseAuth
 from biokbase.workspace.client import Workspace as workspaceService
 from onerepotest.onerepotestImpl import onerepotest
 
@@ -17,16 +17,17 @@ class onerepotestTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         token = environ.get('KB_AUTH_TOKEN', None)
-        auth_client = biokbase.nexus.Client(config={'server': 'nexus.api.globusonline.org',
-                'verify_ssl': True, 'client': None, 'client_secret': None})
-        user, _, _ = auth_client.validate_token(token)
-        cls.ctx = {'token': token, 'authenticated': 1, 'user_id': user}
         config_file = environ.get('KB_DEPLOYMENT_CONFIG', None)
         cls.cfg = {}
         config = ConfigParser()
         config.read(config_file)
         for nameval in config.items('onerepotest'):
             cls.cfg[nameval[0]] = nameval[1]
+
+        auth_client = _KBaseAuth(cls.cfg['auth-service-url'])
+        user = auth_client.get_user(token)
+        cls.ctx = {'token': token, 'authenticated': 1, 'user_id': user}
+
         cls.wsURL = cls.cfg['workspace-url']
         cls.wsClient = workspaceService(cls.wsURL, token=token)
         cls.serviceImpl = onerepotest(cls.cfg)

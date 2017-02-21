@@ -7,6 +7,11 @@ MAINTAINER KBase Developer
 
 # RUN apt-get update
 
+RUN . /kb/dev_container/user-env.sh && cd /kb/dev_container/modules && \
+   rm -rf jars && git clone https://github.com/rsutormin/jars && \
+   rm -rf kb_sdk && git clone https://github.com/rsutormin/kb_sdk -b develop && \
+   cd /kb/dev_container/modules/jars && make deploy && \
+   cd /kb/dev_container/modules/kb_sdk && make && make deploy
 # -----------------------------------------
 
 COPY ./ /kb/module
