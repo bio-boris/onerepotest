@@ -73,6 +73,7 @@ class onerepotestTest(unittest.TestCase):
         ret = self.getImpl().get_deploy_config(self.getContext())
         self.assertTrue(type(ret[0]) is dict)
         self.assertTrue(ret[0]["kbase-endpoint"].startswith("http"))
+        print("Config: " + str(ret[0]))
 
     def test_list_ref_data(self):
         ret = self.getImpl().list_ref_data(self.getContext(), "/data")

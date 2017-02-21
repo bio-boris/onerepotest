@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #BEGIN_HEADER
 import time
 import os
@@ -16,16 +17,16 @@ class onerepotest:
     A KBase module: onerepotest
     '''
 
-    ######## WARNING FOR GEVENT USERS #######
+    ######## WARNING FOR GEVENT USERS ####### noqa
     # Since asynchronous IO can lead to methods - even the same method -
     # interrupting each other, you must be *very* careful when using global
     # state. A method could easily clobber the state set by another while
     # the latter method is running.
-    #########################################
+    ######################################### noqa
     VERSION = "0.0.1"
     GIT_URL = "https://github.com/kbaseIncubator/onerepotest"
-    GIT_COMMIT_HASH = "0888ef46787df9e8d0335be4265c29d65e38c1cb"
-    
+    GIT_COMMIT_HASH = "2df279b5668a34763993d65dc53f129fde1a4043"
+
     #BEGIN_CLASS_HEADER
     #END_CLASS_HEADER
 
@@ -36,9 +37,13 @@ class onerepotest:
         self.deploy_config = config
         #END_CONSTRUCTOR
         pass
-    
+
 
     def send_data(self, ctx, params):
+        """
+        :param params: instance of unspecified object
+        :returns: instance of unspecified object
+        """
         # ctx is the context object
         # return variables are: returnVal
         #BEGIN send_data
@@ -54,6 +59,10 @@ class onerepotest:
         return [returnVal]
 
     def print_lines(self, ctx, text):
+        """
+        :param text: instance of String
+        :returns: instance of Long
+        """
         # ctx is the context object
         # return variables are: number_of_lines
         #BEGIN print_lines
@@ -72,6 +81,9 @@ class onerepotest:
         return [number_of_lines]
 
     def generate_error(self, ctx, error):
+        """
+        :param error: instance of String
+        """
         # ctx is the context object
         #BEGIN generate_error
         print("Preparing to generate an error...")
@@ -80,6 +92,9 @@ class onerepotest:
         pass
 
     def get_deploy_config(self, ctx):
+        """
+        :returns: instance of mapping from String to String
+        """
         # ctx is the context object
         # return variables are: config
         #BEGIN get_deploy_config
@@ -94,6 +109,10 @@ class onerepotest:
         return [config]
 
     def list_ref_data(self, ctx, ref_data_path):
+        """
+        :param ref_data_path: instance of String
+        :returns: instance of list of String
+        """
         # ctx is the context object
         # return variables are: files
         #BEGIN list_ref_data
@@ -108,6 +127,11 @@ class onerepotest:
         return [files]
 
     def local_sdk_callback(self, ctx, input):
+        """
+        :param input: instance of String
+        :returns: multiple set - (1) parameter "output" of String, (2)
+           parameter "state" of String
+        """
         # ctx is the context object
         # return variables are: output, state
         #BEGIN local_sdk_callback
@@ -137,6 +161,11 @@ class onerepotest:
         return [output, state]
 
     def copy_scratch_file(self, ctx, input_file_name, output_file_name):
+        """
+        :param input_file_name: instance of String
+        :param output_file_name: instance of String
+        :returns: instance of String
+        """
         # ctx is the context object
         # return variables are: state
         #BEGIN copy_scratch_file
@@ -151,7 +180,6 @@ class onerepotest:
                              'state is not type basestring as required.')
         # return the results
         return [state]
-
     def status(self, ctx):
         #BEGIN_STATUS
         returnVal = {'state': "OK", 'message': "", 'version': self.VERSION, 
