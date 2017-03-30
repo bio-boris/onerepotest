@@ -14,7 +14,7 @@ owners:
     [rsutormin, wstester1]
 
 data-version:
-    0.2
+    0.3
 
 service-config:
     dynamic-service: true
