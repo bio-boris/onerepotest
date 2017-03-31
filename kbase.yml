@@ -8,13 +8,13 @@ service-language:
     python
 
 module-version:
-    0.0.1
+    0.0.2
 
 owners:
     [rsutormin, wstester1]
 
 data-version:
-    0.3
+    0.2
 
 service-config:
     dynamic-service: true
