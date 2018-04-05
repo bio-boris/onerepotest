@@ -1,5 +1,5 @@
 module-name:
-    onerepotest
+    onerepotest2
 
 module-description:
     KBase module for integration tests of docker-based service/async method calls
@@ -11,7 +11,7 @@ module-version:
     0.0.2
 
 owners:
-    [rsutormin, wstester1]
+    [rsutormin, wstester1, bsadkhin]
 
 data-version:
     0.2
